@@ -1,9 +1,6 @@
 import React from "react";
 
 export default async function Page({ params }) {
-  const resolvedParams = await params; 
-  const id = resolvedParams.id;
-
   const data = [
     {
       _id: "64f1a2b3c4d5e6f701234567",
@@ -25,22 +22,37 @@ export default async function Page({ params }) {
     },
   ];
 
+  const resolvedParams = await params;
+  const id = resolvedParams.id;
+
   const singleData = data.find((d) => d._id === id);
 
+if(singleData){
+ return (
+    <div className="text-center">
+      <h1>{singleData?.title}</h1>
+      <p>{singleData?.description}</p>
 
-
-return (
-  <div className="text-center">
-    <h1>{singleData?.title}</h1>
-    <p>{singleData?.description}</p>
-
-    <div className="flex justify-center mt-6">
-      <img
-        src={singleData.img}
-        alt={singleData.title}
-        className="w-1/2 h-auto "
-      />
+      <div className="flex justify-center mt-6">
+        <img
+          src={singleData.img}
+          alt={singleData.title}
+          className="w-1/2 h-auto "
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+
+
+
+}
+else{
+
+return <>
+<p>Not Found service </p>
+
+</>
+
+}
+ 
 }
