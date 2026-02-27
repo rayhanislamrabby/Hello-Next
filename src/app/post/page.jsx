@@ -7,7 +7,10 @@ const getPost = async () => {
 
   return data;
 };
-
+export const metadata = {
+  title: " ALL POST ",
+  description: "NextJs Learningg",
+};
 export default async function Post() {
   const posts = await getPost();
 
