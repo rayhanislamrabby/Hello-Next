@@ -1,20 +1,17 @@
-export const dynamic = 'force-static'
- 
+import dbConnect from "@/lib/dbConnect";
+
+export const dynamic = "force-dynamic";
+
 export async function GET() {
+  const data = await dbConnect("practice_data").find({}).toArray();
 
-const data = {
-
-
-message : "Successfully get data ",
-error: false,
-status: 200
-
+  return Response.json({ data });
 }
 
+export async function POST(req) {
+  const postData = await req.json();
 
+  const result = await dbConnect("practice_data").insertOne(postData);
 
-
-
- 
-  return Response.json({ data })
+  return Response.json({ result });
 }
