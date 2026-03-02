@@ -21,6 +21,8 @@ export default function productsAddForm() {
     const result = await res.json();
 
     console.log("data", result);
+    form.reset();
+    alert("products add ")
   };
 
   return (
