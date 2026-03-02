@@ -1,6 +1,10 @@
 "use client";
 
-export default function productsAddForm() {
+import { useRouter } from "next/navigation";
+
+export default function ProductsAddForm() {
+const router = useRouter();
+const {NEXT_PUBLIC_SERVER_ADDRESS} = process.env;
   const handelSubmit = async (e) => {
     e.preventDefault();
 
@@ -9,7 +13,7 @@ export default function productsAddForm() {
 
     const playload = { productsName };
 
-    const res = await fetch("http://localhost:3000/api/items", {
+    const res = await fetch(`${NEXT_PUBLIC_SERVER_ADDRESS}/api/items`, {
       method: "POST",
 
       body: JSON.stringify(playload),
@@ -22,7 +26,8 @@ export default function productsAddForm() {
 
     console.log("data", result);
     form.reset();
-    alert("products add ")
+    // alert("products add ")
+router.push("/products")
   };
 
   return (
