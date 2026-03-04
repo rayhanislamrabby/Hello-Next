@@ -28,6 +28,9 @@ const NavBar = () => {
           <Link href="/products/add">
             <li>Add Products</li>
           </Link>
+             <Link href="/login">
+            <li>LogIn</li>
+          </Link>
         </ul>
       </nav>
     </div>

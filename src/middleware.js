@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const dummyUserData = {
-  role: "user",
+  role: "admin",
   email: "text@admin.com",
 };
 
