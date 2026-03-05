@@ -1,9 +1,54 @@
-import React from 'react'
+"use client";
 
-export default function Register() {
+import { registerUser } from "@/app/api/auth/[...nextauth]/registerUser";
+import { useRouter } from "next/navigation";
+
+export default function RegisterPage() {
+  const router = useRouter();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const plyload = { name, email, password };
+
+    const result = await registerUser(plyload);
+
+    console.log("infooo", result);
+  };
+
   return (
     <div>
-      <h1>Register</h1>
+      <h2>Register</h2>
+
+      <form onSubmit={handleRegister}>
+        <input name="name" placeholder="Name" required />
+
+        <br />
+        <br />
+
+        <input name="email" type="email" placeholder="Email" required />
+
+        <br />
+        <br />
+
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+
+        <br />
+        <br />
+
+        <button type="submit">Register</button>
+      </form>
     </div>
-  )
+  );
 }
