@@ -1,4 +1,14 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+
+
+export const collectionsNames =  {
+
+TEST_USER:"test_user",
+PRACTICE_DATA : "practice_data"
+
+}
+
+
 function dbConnect(testnextjs) {
   const uri = process.env.MONGODB_URI;
 

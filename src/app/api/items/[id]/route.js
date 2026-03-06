@@ -1,10 +1,10 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { collectionsNames } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 
 export async function GET(req, { params }) {
   const resolvedParams = await params;
 
-  const singleData = await dbConnect("practice_data").findOne({
+  const singleData = await dbConnect(collectionsNames.PRACTICE_DATA).findOne({
     _id: new ObjectId(resolvedParams.id),
   });
 
@@ -16,7 +16,7 @@ export async function GET(req, { params }) {
 export async function DELETE(req, { params }) {
   const resolvedParams = await params;
 
-  const singleData = await dbConnect("practice_data").deleteOne({
+  const singleData = await dbConnect(collectionsNames.PRACTICE_DATA).deleteOne({
     _id: new ObjectId(resolvedParams.id)},
    
     

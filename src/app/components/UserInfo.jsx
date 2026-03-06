@@ -1,16 +1,16 @@
+
+
 "use client"
 
-import { useSession } from 'next-auth/react'
-import React from 'react'
+import { useSession } from "next-auth/react"
 
-export default function UserInfo() {
+export default function UserInfo(){
 
-    const session = useSession()
+ const { data: session } = useSession()
 
-
-  return (
-    <div>
-      <p>{JSON.stringify(session)}</p>
-    </div>
-  )
+ return (
+  
+   <p>Role: {session?.user?.role }</p>
+  
+ )
 }

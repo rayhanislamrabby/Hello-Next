@@ -1,23 +1,27 @@
+import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
-const dummyUserData = {
-  role: "admin",
-  email: "text@admin.com",
-};
+export async function middleware(req) {
 
-export function middleware(request) {
-  const isServicePage =
-    request.nextUrl.pathname.startsWith("/services");
+  const token = await getToken({ req });
 
-  const isAdmin = dummyUserData.role === "admin";
+  const isAdminUser = token?.role === "admin";
 
-  if (isServicePage && !isAdmin) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  const isAddProductRoute =
+    req.nextUrl.pathname.startsWith("/dashboard/products/add");
+
+
+  if (!token && isAddProductRoute) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  if (token && !isAdminUser && isAddProductRoute) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/services/:path*"],
+  matcher: ["/dashboard/products/add/:path*"],
 };

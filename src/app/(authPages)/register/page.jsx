@@ -11,11 +11,11 @@ export default function RegisterPage() {
 
     const form = e.target;
 
-    const name = form.name.value;
+    const username = form.username.value;
     const email = form.email.value;
     const password = form.password.value;
 
-    const plyload = { name, email, password };
+    const plyload = { username, email, password };
 
     const result = await registerUser(plyload);
 
@@ -27,7 +27,7 @@ export default function RegisterPage() {
       <h2>Register</h2>
 
       <form onSubmit={handleRegister}>
-        <input name="name" placeholder="Name" required />
+        <input name="username" placeholder="Name" required />
 
         <br />
         <br />

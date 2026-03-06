@@ -22,7 +22,7 @@ export default function ProductsAddForm() {
         "Content-type": "application/json",
       },
     });
-    console.log("ENV:", process.env.NEXT_PUBLIC_SERVER_ADDRESS);
+    // console.log("ENV:", process.env.NEXT_PUBLIC_SERVER_ADDRESS);
 
     const result = await res.json();
 
